@@ -269,3 +269,73 @@ const arr = multiply(2, 1, 2, 3);
 console.log(arr); // [2, 4, 6]
 
 //アロー関数
+//例
+const a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+
+const a2 = a.map(function (s) {
+  return s.length;
+});
+
+console.log(a2); // [8, 6, 7, 9]
+//上記と同じ出力 s.length =  返り値
+const a3 = a.map((s) => s.length);
+
+console.log(a3); // [8, 6, 7, 9]
+
+//Date
+const dateObjectName = new Date([parameters]);
+//paremeterで日付を指定できる、引数なしで現在の日付と時刻を表すDateオブジェクトが作成される
+
+//正規表現
+exec() //文字列内検索 結果配列 なければnull
+test() //文字列内検索 true false
+match() //文字列内検索 抽出 すべて結果の配列 なければnull
+matchAll() //文字列内検索 すべての結果を含むイテレータを返す
+search() //文字列内検索 最初の一致の位置を返す なければ-1
+replace() //文字列内検索 置換
+replaceAll() //文字列内検索 すべての一致を置換
+split() //文字列内検索 分割
+
+//配列の長さ変更で要素削除可能
+const cats = ["Dusty", "Misty", "Twiggy"];
+console.log(cats.length); // 3
+
+cats.length = 2;
+console.log(cats); // [ 'Dusty', 'Misty' ] - Twiggy は削除される
+
+cats.length = 0;
+console.log(cats); // []; 配列 cats は空になる
+
+cats.length = 3;
+console.log(cats); // [ <3 つの空アイテム> ]
+
+//配列反復処理
+const sparseArray = ["first", "second", , "fourth"];
+
+sparseArray.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// first
+// second
+// fourth
+
+if (sparseArray[2] === undefined) {
+  console.log("sparseArray[2] is undefined"); // true
+}
+
+const nonsparseArray = ["first", "second", undefined, "fourth"];
+
+nonsparseArray.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// first
+// second
+// undefined
+// fourth
+
+//for in でloopは配列の要素だけでなく、配列のプロパティも列挙するため、for in は配列の反復処理には適さない
+
+//配列の結合
+concat()
