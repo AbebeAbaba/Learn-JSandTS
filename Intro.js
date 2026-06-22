@@ -339,3 +339,74 @@ nonsparseArray.forEach((element) => {
 
 //配列の結合
 concat()
+let myArray = ["1", "2", "3"];
+myArray = myArray.concat("a", "b", "c");
+// myArray は ["1", "2", "3", "a", "b", "c"] になる
+
+const myArray2 = ["Wind", "Rain", "Fire"];
+const list = myArray2.join(" - "); // list は "Wind - Rain - Fire" になる
+
+//pop() 配列の最後の要素を取り除き、返す shift() 配列の最初の要素を取り除き、返す
+//unshoft() 配列の最初に()内の要素を追加し、返す
+//slice() (1, 4)インデックス1から4の前までの要素を新しい配列として返す
+//at() 負の整数を使用すると末尾からの要素を取得できる　(-1)なら最後の要素を返す
+
+//splice() splice(1,3, "a", "b") インデックス1から3の前までの要素を削除し、"a", "b"を追加する
+//配列をソートできる sort()
+
+//疎配列
+// Array コンストラクター:
+const a = Array(5); // [ <5 つの空の項目> ]
+
+// 配列リテラルの連続したカンマ:
+const b = [1, 2, , , 5]; // [ 1, 2, <2 つの空の項目>, 5 ]
+
+// array.length より大きいインデックスを持つスロットを直接設定:
+const c = [1, 2];
+c[4] = 5; // [ 1, 2, <2 つの空の項目>, 5 ]
+
+// .length を直接設定して配列を延長する:
+const d = [1, 2];
+d.length = 5; // [ 1, 2, <3 つの空の項目> ]
+
+// 要素の削除:
+const e = [1, 2, 3, 4, 5];
+delete e[2]; // [ 1, 2, <1 つの空の項目>, 4, 5 ]
+
+//Map　オブジェクトに似ているが、キーの型に制限がない
+//キーが文字列以外でも可能 サイズも確認が容易
+const sayings = new Map();
+sayings.set("dog", "woof");
+sayings.set("cat", "meow");
+sayings.set("elephant", "toot");
+sayings.size; // 3
+sayings.get("dog"); // woof
+sayings.get("fox"); // undefined
+sayings.has("bird"); // false
+sayings.delete("dog");
+sayings.has("dog"); // false
+
+for (const [key, value] of sayings) {
+  console.log(`${key} goes ${value}`);
+}
+// "cat goes meow"
+// "elephant goes toot"
+
+sayings.clear();
+sayings.size; // 0
+
+//Set 重複しない配列、インデックスでアクセスできない 配列にしてからじゃないと並び替えできない
+
+//プロパティ削除
+// 2 つのプロパティ a と b を持つ新しいオブジェクト myobj を作成。
+const myObj = { a: 5, b: 12 };
+
+// プロパティ a を削除すると、myobj には b プロパティだけが残る。
+delete myObj.a;
+console.log("a" in myObj); // false
+
+//プロパティ追加 prototype
+//これはCarのなかにcar1, car2があったらcar2.colorもredになる
+Car.prototype.color = "red";
+console.log(car1.color); // "red"
+
