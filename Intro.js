@@ -536,3 +536,32 @@ const arr = [1, "hello", true, null];
 //Unit8Array Unit16Array Uint32Array Float32Array Float64Array Int8Array Int16Array Int32Array など
 const typed = new Int32Array([1, 2, 3, 4]);  // 32ビット整数だけ
 
+//イテレーター next() メソッドを持つオブジェクト 呼ぶたびに次の値を返す
+//for of の裏側
+//イテレーターを作成することも可能
+function makeCounter(max) {
+  let count = 0;
+  return {
+    next() {
+      if (count < max) {
+        return { value: count++, done: false };
+      } else {
+        return { value: undefined, done: true };
+      }
+    }
+  };
+}
+
+const counter = makeCounter(3);
+counter.next();  // { value: 0, done: false }
+counter.next();  // { value: 1, done: false }
+counter.next();  // { value: 2, done: false }
+counter.next();  // { value: undefined, done: true }
+
+//ジェネレーター イテレーターを簡単に作成するための構文
+//ジェネレータ関数は function* で定義される yieldも使用する
+//最初に呼び出されると、ジェネレーター関数はコードを実行せず、
+// ジェネレーターと呼ばれるイテレーターを返します。
+// ジェネレーターの next メソッドを呼び出すことによって値が消費されると、
+// ジェネレーター関数はyieldで一時停止、またnext()で再開
+
