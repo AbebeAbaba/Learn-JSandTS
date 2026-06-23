@@ -410,3 +410,129 @@ console.log("a" in myObj); // false
 Car.prototype.color = "red";
 console.log(car1.color); // "red"
 
+//method 使用意図が分かりやすい this.がつかえる メモリ節約になる
+objectName.methodName = functionName;
+
+const myObj = {
+  myMethod: function (params) {
+    // ...処理を行う
+  },
+  // これでも動作します
+  myOtherMethod(params) {
+    // ...他の処理を行う
+  },
+};
+//例
+Car.prototype.displayCar = function () {
+  const result = `美しい ${this.year} 年式の ${this.make} ${this.model}`;
+  console.log(result);
+};
+
+//getter setter 決めたプロパティの値を取得したり設定
+const myObj = {
+  a: 7,
+  get b() {
+    return this.a + 1;
+  },
+  set c(x) {
+    this.a = x / 2;
+  },
+};
+
+console.log(myObj.a); // 7
+console.log(myObj.b); // 8、 get b() メソッドから返されたもの
+myObj.c = 50; // set c(x) メソッドを呼び出し
+console.log(myObj.a); // 25
+
+//constructor クラスで作成されたオブジェクトインスタンスの生成と初期化を行う
+//クラス宣言は巻き上げがないため、クラス宣言の前にクラスを使用することはできない
+//関数宣言は巻き上げがあるため、関数宣言の前に関数を使用することができる
+
+//インスタンスメソッド
+class Color {
+  constructor(r, g, b) {
+    this.values = [r, g, b];
+  }
+  getRed() {
+    return this.values[0];
+  }
+  setRed(value) {
+    this.values[0] = value;
+  }
+}
+
+const red = new Color(255, 0, 0);
+red.setRed(0);
+console.log(red.getRed()); // 0。もちろん、この段階では「黒」と呼ばれるものなので。
+
+//privatefield クラスの外部からアクセスできないフィールドを定義するために使用される
+//プライベートフィールドがパブリックフィールドやメソッドと名前が衝突することはない
+class Example {
+  #value = 1;
+  value = 2;
+  value(){
+    //処理
+  }
+
+  print() {
+    console.log(this.#value); // 1
+    console.log(this.value);  // 2
+  }
+} //が可能になる
+
+//extends クラスの継承
+class ColorWithAlpha extends Color {
+  #alpha;
+  constructor(r, g, b, a) {
+    super(r, g, b);
+    this.#alpha = a;
+  }
+  get alpha() {
+    return this.#alpha;
+  }
+  set alpha(value) {
+    if (value < 0 || value > 1) {
+      throw new RangeError("Alpha value must be between 0 and 1");
+    }
+    this.#alpha = value;
+  }
+}
+
+//promise 非同期処理の結果を表すオブジェクト 用意されたプロミスを使うことが多い
+//連鎖
+doSomething()
+  .then(result => doSomethingElse(result))
+  .then(newResult => doThirdThing(newResult))
+  .then(finalResult => console.log(finalResult))
+  .catch(failureCallback); 
+
+//エラー処理
+doSomething()
+  .then(...)
+  .then(...)
+  .catch(err => console.error(err));
+  
+
+//Promiseのコンストラクタ
+new Promise((resolve, reject) => { ... })
+
+//then() / .catch()
+promise.then(value => ...).catch(err => ...)
+
+//async/await
+async function foo() { await somePromise }
+
+//Promise.all など
+Promise.all([p1, p2, p3])
+
+
+//型つき配列
+//型付き配列はメモリが連続して確保されるので、処理が速い
+
+// 普通の配列（何でも入る）
+const arr = [1, "hello", true, null];
+
+// 型付き配列（同じ型だけ）
+//Unit8Array Unit16Array Uint32Array Float32Array Float64Array Int8Array Int16Array Int32Array など
+const typed = new Int32Array([1, 2, 3, 4]);  // 32ビット整数だけ
+
