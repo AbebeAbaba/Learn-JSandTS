@@ -1,1 +1,0 @@
-https://typescriptbook.jp/を用いて学習を行おうと考えています.
