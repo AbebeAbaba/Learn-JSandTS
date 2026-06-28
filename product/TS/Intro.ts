@@ -89,3 +89,5 @@ console.log(octocat); //{ swims: true, nightVision: true }
 
 //TypeScriptではアロー関数や関数宣言に型注釈をつけることができる。
 
+//引数 分割代入引数、オプション引数、デフォルト引数、残余引数が可能 
+
