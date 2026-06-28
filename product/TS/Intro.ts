@@ -24,8 +24,68 @@ function throwError(): never {
 }
 
 //型エイリアス 可読性向上
+//型エイリアスで名前をつけたユニオン型
 type StringOrNumber = string | number;
 let value: StringOrNumber;
 value = "hello"; // string型が代入可能
 value = 123; // number型も代入可能
+
+//配列の型注釈
+//配列の型注釈には型名[]またはArray<型名>を使う。
+let numbers: number[];
+let strings: Array<string>;
+
+//読み取り専用配列
+//readonly 型名[], ReadonlyArray<型名>で宣言
+const numbers: readonly number[] = [1, 2, 3];
+const strings: ReadonlyArray<string> = ["hello", "world"];
+ 
+numbers[0] = 4; // 値を変更できない
+strings.push("!"); // 要素を追加できない
+
+//タプル型
+//tupleで宣言 要素数、型が固定される
+let tuple: [string, number] = ["hello", 123];
+
+//readonly プロパティ 代入はできないが、参照はできる
+let obj: { readonly name: string; age: number };
+
+//オプションプロパティ ?
+//プロパティを省略可能
+let obj: { name: string; age?: number };
+
+
+//インデックス型プロパティ
+let obj: { [key: string]: number };
+obj = { key1: 1, key2: 2 };
+console.log(obj["key1"]); //1
+
+//オプショナルチェーン ?.
+
+//Enum 列挙型
+enum Color {
+  Red = "red",
+  Green = "green",
+  Blue = "blue",
+}
+
+//ユニオン型
+//boolean型とnumber型のどちらかを許容する変数
+let value: boolean | number;
+value = true; // 代入できる
+value = 100; // 代入できる
+
+//インターセクション型
+//複数の型を&で一つの型に結合する
+type Octopus = { swims: boolean };
+type Cat = { nightVision: boolean };
+type Octocat = Octopus & Cat;
+ 
+const octocat: Octocat = { swims: true, nightVision: true };
+console.log(octocat); //{ swims: true, nightVision: true }
+
+//分割代入
+//配列の各要素やオブジェクトのプロパティの分割代入
+
+//TypeScriptではアロー関数や関数宣言に型注釈をつけることができる。
 
