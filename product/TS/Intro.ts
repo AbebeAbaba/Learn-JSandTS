@@ -91,3 +91,46 @@ console.log(octocat); //{ swims: true, nightVision: true }
 
 //引数 分割代入引数、オプション引数、デフォルト引数、残余引数が可能 
 
+//instanceof
+//オブジェクトが特定のクラスのインスタンスであるかを判定
+
+//例外処理
+//tryブロック内のコードは、エラーを検出し、catchブロックはエラーをハンドリングする。
+//finallyブロックはエラーの有無に関係なく実行される。
+try {
+  throw new Error("Oops, something went wrong.");
+} catch (error) {
+  console.log(error);
+} finally {
+  console.log("This is the finally block. It always gets executed.");
+}
+
+//TSは非同期処理可能
+
+//promise
+//resolve()で成功時の処理、reject()で失敗時の処理を行う。
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Promise resolved"); ///成功時にPromise resolvedの文字列を返す
+  }, 2000); //2秒後にresolve()を呼び出す
+});
+
+promise.then((data) => { //.then()はPromiseが成功した場合に呼び出される reject()の場合はcatch()
+  console.log(data);
+});
+
+//async/await
+//thenを使わずに非同期処理を同期処理のように書ける 書き換えることができる
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function asyncFunction() { //2秒待ってから処理を実行する非同期関数
+  console.log("Start");
+  await delay(2000);
+  console.log("End");
+}
+
+asyncFunction(); //Start → 2秒後 → End
+
