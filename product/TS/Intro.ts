@@ -39,7 +39,6 @@ let strings: Array<string>;
 //readonly 型名[], ReadonlyArray<型名>で宣言
 const numbers: readonly number[] = [1, 2, 3];
 const strings: ReadonlyArray<string> = ["hello", "world"];
- 
 numbers[0] = 4; // 値を変更できない
 strings.push("!"); // 要素を追加できない
 
@@ -80,7 +79,6 @@ value = 100; // 代入できる
 type Octopus = { swims: boolean };
 type Cat = { nightVision: boolean };
 type Octocat = Octopus & Cat;
- 
 const octocat: Octocat = { swims: true, nightVision: true };
 console.log(octocat); //{ swims: true, nightVision: true }
 
@@ -115,7 +113,6 @@ const promise = new Promise((resolve, reject) => {
     resolve("Promise resolved"); ///成功時にPromise resolvedの文字列を返す
   }, 2000); //2秒後にresolve()を呼び出す
 });
-
 promise.then((data) => { //.then()はPromiseが成功した場合に呼び出される reject()の場合はcatch()
   console.log(data);
 });
@@ -125,12 +122,25 @@ promise.then((data) => { //.then()はPromiseが成功した場合に呼び出さ
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
 async function asyncFunction() { //2秒待ってから処理を実行する非同期関数
   console.log("Start");
   await delay(2000);
   console.log("End");
 }
-
 asyncFunction(); //Start → 2秒後 → End
+
+//ジェネリクス <> 型をパラメータ化することができる 再利用性が高い
+// Tが型変数
+function identity<T>(arg: T): T {
+  return arg;
+}
+// 型変数Tにstringを割り当てる
+const output1 = identity<string>("myString");
+// 型変数Tにnumberを割り当てる
+const output2 = identity<number>(100);
+
+//export default 1つのファイルに1つのデフォルトエクスポートを持つことができる
+export default {event,handler}; //したとして
+import shutDown from "./shutdown"; //や
+import aaaaa from "./shutdown"; //のように別名を指定してimportできる
 
