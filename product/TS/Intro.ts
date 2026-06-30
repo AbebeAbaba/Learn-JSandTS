@@ -144,3 +144,6 @@ export default {event,handler}; //したとして
 import shutDown from "./shutdown"; //や
 import aaaaa from "./shutdown"; //のように別名を指定してimportできる
 
+//exportでは関数だけでなく、クラスやインターフェース、型などもエクスポートできる
+
+//型レベルプログラミング
